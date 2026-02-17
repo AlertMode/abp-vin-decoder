@@ -1,4 +1,8 @@
-import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse } from 'axios'
+import axios, {
+  type AxiosInstance,
+  type AxiosRequestConfig,
+  type AxiosResponse,
+} from "axios";
 
 /**
  * AxiosInterceptorClient is a wrapper around Axios that provides a pre-configured
@@ -20,39 +24,42 @@ import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse 
  * ```
  */
 export class AxiosInterceptorClient {
-  private baseURL: string
-  protected readonly instance: AxiosInstance
+  private baseURL: string;
+  protected readonly instance: AxiosInstance;
 
   constructor(baseURL: string) {
-    this.baseURL = baseURL
+    this.baseURL = baseURL;
     this.instance = axios.create({
       baseURL: this.baseURL,
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-    })
+    });
 
     this.instance.interceptors.request.use((config) => {
-      // TODO: Add loading spinner, auth, etc.
-      return config
-    })
+      return config;
+    });
 
     this.instance.interceptors.response.use(
       (response) => response,
       (error) => {
         const errorMessage =
-          error.response?.data?.error || error.response?.data || error.request || error.message || 'Unknown error'
+          error.response?.data?.error ||
+          error.response?.data ||
+          error.request ||
+          error.message ||
+          "Unknown error";
         if (error.response) {
-          console.error(`ERROR >> HttpClient >> response: ${errorMessage}`)
+          console.error(`ERROR >> HttpClient >> response: ${errorMessage}`);
         } else if (error.request) {
-          console.error(`ERROR >> HttpClient >> request: ${errorMessage}`)
+          console.error(`ERROR >> HttpClient >> request: ${errorMessage}`);
         } else {
-          console.error(`ERROR >> HttpClient >> message: ${errorMessage}`)
+          console.error(`ERROR >> HttpClient >> message: ${errorMessage}`);
         }
-        console.error(`ERROR >> HttpClient: ${error}`)
-        return Promise.reject(error)
-      }
-    )
+        console.error(`ERROR >> HttpClient: ${error}`);
+        return Promise.reject(error);
+      },
+    );
   }
 
   /**
@@ -64,8 +71,11 @@ export class AxiosInterceptorClient {
    * @param {AxiosRequestConfig} [config] - Optional Axios request configuration.
    * @returns {Promise<R>} A promise that resolves to the Axios response.
    */
-  public get<T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
-    return this.instance.get<T, R>(url, config)
+  public get<T = unknown, R = AxiosResponse<T>>(
+    url: string,
+    config?: AxiosRequestConfig,
+  ): Promise<R> {
+    return this.instance.get<T, R>(url, config);
   }
 
   /**
@@ -78,8 +88,12 @@ export class AxiosInterceptorClient {
    * @param {AxiosRequestConfig} [config] - Additional Axios request configuration options (optional).
    * @returns {Promise<R>} A promise that resolves to the Axios response.
    */
-  public post<T = unknown, R = AxiosResponse<T>>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<R> {
-    return this.instance.post<T, R>(url, data, config)
+  public post<T = unknown, R = AxiosResponse<T>>(
+    url: string,
+    data?: unknown,
+    config?: AxiosRequestConfig,
+  ): Promise<R> {
+    return this.instance.post<T, R>(url, data, config);
   }
 
   /**
@@ -92,8 +106,12 @@ export class AxiosInterceptorClient {
    * @param {AxiosRequestConfig} [config] - Optional Axios request configuration.
    * @returns {Promise<R>} A promise that resolves to the Axios response.
    */
-  public put<T = unknown, R = AxiosResponse<T>>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<R> {
-    return this.instance.put<T, R>(url, data, config)
+  public put<T = unknown, R = AxiosResponse<T>>(
+    url: string,
+    data?: unknown,
+    config?: AxiosRequestConfig,
+  ): Promise<R> {
+    return this.instance.put<T, R>(url, data, config);
   }
 
   /**
@@ -109,9 +127,9 @@ export class AxiosInterceptorClient {
   public patch<T = unknown, R = AxiosResponse<T>>(
     url: string,
     data?: unknown,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<R> {
-    return this.instance.patch<T, R>(url, data, config)
+    return this.instance.patch<T, R>(url, data, config);
   }
 
   /**
@@ -123,8 +141,11 @@ export class AxiosInterceptorClient {
    * @param {AxiosRequestConfig} [config] - Optional Axios request configuration.
    * @returns {Promise<R>} A promise that resolves to the Axios response.
    */
-  public delete<T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
-    return this.instance.delete<T, R>(url, config)
+  public delete<T = unknown, R = AxiosResponse<T>>(
+    url: string,
+    config?: AxiosRequestConfig,
+  ): Promise<R> {
+    return this.instance.delete<T, R>(url, config);
   }
 
   /**
@@ -136,8 +157,11 @@ export class AxiosInterceptorClient {
    * @param {AxiosRequestConfig} [config] - Optional Axios request configuration.
    * @returns {Promise<R>} A promise that resolves to the Axios response.
    */
-  public head<T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
-    return this.instance.head<T, R>(url, config)
+  public head<T = unknown, R = AxiosResponse<T>>(
+    url: string,
+    config?: AxiosRequestConfig,
+  ): Promise<R> {
+    return this.instance.head<T, R>(url, config);
   }
 
   /**
@@ -149,7 +173,10 @@ export class AxiosInterceptorClient {
    * @param {AxiosRequestConfig} [config] - Optional Axios request configuration.
    * @returns {Promise<R>} A promise that resolves to the Axios response.
    */
-  public options<T = unknown, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
-    return this.instance.options<T, R>(url, config)
+  public options<T = unknown, R = AxiosResponse<T>>(
+    url: string,
+    config?: AxiosRequestConfig,
+  ): Promise<R> {
+    return this.instance.options<T, R>(url, config);
   }
 }
