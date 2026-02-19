@@ -8,6 +8,12 @@ $secondary-color: #6c757d;
 $text-color: #e3dede;
 $background-color: #f8f9fa;
 
+$status-adviser-colors: (
+  success: #28a745,
+  error: #dc3545,
+  warning: #ffc107,
+);
+
 html {
   font-size: 14px;
 }
@@ -62,4 +68,22 @@ a:active {
   background-color: $background-color;
   padding: 1rem;
   border-radius: 0.5rem;
+}
+
+.vin-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+@each $status, $color in $status-adviser-colors {
+  .status-adviser--#{$status} {
+    background-color: $color;
+    color: $text-color;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-family: $monserrat-sans;
+    font-weight: 500;
+  }
 }
