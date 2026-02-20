@@ -69,7 +69,7 @@ const Vin = (props: { onVinCodeUpdate: (vin: string) => void }) => {
       event.preventDefault();
 
       const form = event.currentTarget;
-      const input = form.querySelector<HTMLInputElement>(".vin-input");
+      const input = form.querySelector(".vin-input") as HTMLInputElement;
       if (!input) return;
 
       const vin = input.value.trim();
@@ -99,7 +99,9 @@ const Vin = (props: { onVinCodeUpdate: (vin: string) => void }) => {
           placeholder="Enter VIN"
           className="vin-input"
           value={vinInput}
-          onChange={(e) => setVinInput(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setVinInput(e.target.value)
+          }
         />
         <button className="vin-submit">Submit</button>
       </form>
