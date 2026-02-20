@@ -150,6 +150,24 @@ a:active {
   font-weight: 400;
 }
 
+.vin-variable-id-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+.vin-variable-id-name {
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.vin-variable-id-description {
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
 // Responsive design for mobile devices (420px and below)
 @media (max-width: 420px) {
   html {
