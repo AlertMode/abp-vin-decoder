@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Variables from "./pages/Variables";
@@ -7,7 +6,7 @@ import NavigationBar from "./components/NavigationBar";
 
 const App = () => {
   return (
-    <div>
+    <div className="app-container">
       <NavigationBar />
       <Routes>
         <Route path="/" element={<Home />} />
