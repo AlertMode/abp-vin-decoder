@@ -3,7 +3,7 @@ import type { VinDataAllFieldsProps } from "../types/vin.type";
 const VinCodeInfo = (props: { vinCodeData: VinDataAllFieldsProps }) => {
   return (
     <div className="vin-code-info">
-      <h2>{props.vinCodeData.SearchCriteria}</h2>
+      <h3>{props.vinCodeData.SearchCriteria}</h3>
       <div>
         {props.vinCodeData.Results.map((result, index) => (
           <div key={index} className="vin-code-item">

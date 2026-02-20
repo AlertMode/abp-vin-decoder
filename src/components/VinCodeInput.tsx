@@ -3,7 +3,6 @@ import getDataByVIN from "../requests/getDataByVIN";
 import {
   saveToLocalStorage,
   getFromLocalStorage,
-  valueExistsInLocalStorage,
 } from "../services/localStorageHandler";
 import type { VinDataAllFieldsProps } from "../types/vin.type";
 import StatusAdviser, { type StatusAdviserProps } from "./StatusAdviser";
@@ -21,7 +20,7 @@ const Vin = (props: { onVinCodeUpdate: (vin: string) => void }) => {
     return vinRegex.test(vin.toUpperCase());
   };
 
-  const reqestVINdata = async (vin: string) => {
+  const requestVINdata = async (vin: string): Promise<void> => {
     try {
       const response = await getDataByVIN(vin);
       if (response && response.data) {
@@ -30,12 +29,8 @@ const Vin = (props: { onVinCodeUpdate: (vin: string) => void }) => {
           const localStorageData = getFromLocalStorage(VIN_DATA_KEY);
           if (localStorageData && localStorageData.length > 0) {
             const existingVinData = JSON.parse(localStorageData);
-            if (
-              !valueExistsInLocalStorage(VIN_DATA_KEY, JSON.stringify(vinData))
-            ) {
-              const updatedVinData = [...existingVinData, vinData];
-              saveToLocalStorage(VIN_DATA_KEY, JSON.stringify(updatedVinData));
-            }
+            const updatedVinData = [...existingVinData, vinData];
+            saveToLocalStorage(VIN_DATA_KEY, JSON.stringify(updatedVinData));
           } else {
             saveToLocalStorage(VIN_DATA_KEY, JSON.stringify([vinData]));
           }
@@ -75,7 +70,7 @@ const Vin = (props: { onVinCodeUpdate: (vin: string) => void }) => {
       const vin = input.value.trim();
 
       if (isVINcode(vin)) {
-        await reqestVINdata(vin);
+        await requestVINdata(vin);
       } else {
         setRequestStatus({
           message: "Invalid VIN code. Please enter a valid 17-character VIN.",
