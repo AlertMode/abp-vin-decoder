@@ -4,17 +4,35 @@
 $monserrat-sans: "Montserrat", sans-serif;
 
 $primary-color: #007bff;
-$secondary-color: #6c757d;
-$text-color: #e3dede;
-$background-color: #f8f9fa;
+$secondary-color: #404d58;
+$text-color-bright: #e3dede;
+$text-color-dark: #333;
+$background-color: #cdd1d4;
+
+$status-adviser-colors: (
+  success: #28a745,
+  error: #dc3545,
+  // Will be used for warnings in the future, but currently not implemented in the UI
+   // warning: #ffc107,
+);
 
 html {
   font-size: 14px;
+  font-family: $monserrat-sans;
+}
+
+// Preventing width issues
+.app-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1.5rem;
 }
 
 .nav-bar {
   padding: 1rem;
   background-color: $primary-color;
+  font-size: 16px;
 }
 
 .nav-list {
@@ -28,7 +46,6 @@ html {
 .nav-item {
   color: white;
   text-decoration: none;
-  font-family: $monserrat-sans;
   font-weight: 500;
 }
 
@@ -37,4 +54,155 @@ a:visited,
 a:hover,
 a:active {
   text-decoration: none;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.home-element {
+  background-color: $background-color;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.vin-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+// Dynamic status adviser styles based on the $status-adviser-colors map
+@each $status, $color in $status-adviser-colors {
+  .status-adviser--#{$status} {
+    background-color: $color;
+    color: $text-color-bright;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-family: $monserrat-sans;
+    font-weight: 500;
+  }
+}
+
+.vin-code-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.vin-code-item {
+  font-size: 1.2rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 2fr;
+  grid-column-gap: 4px;
+  grid-row-gap: 4px;
+  width: 90%;
+  background-color: $background-color;
+  border-radius: 0.5rem;
+  padding: 0.7rem;
+  border-color: $secondary-color;
+  border-style: solid;
+  border-width: 1px;
+  color: $text-color-dark;
+}
+
+.vin-code-key {
+  font-weight: 600;
+}
+.vin-code-value {
+  font-weight: 400;
+}
+
+.vin-history-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.vin-history-item {
+  padding: 0.2rem;
+  cursor: pointer;
+}
+
+.vin-variables-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.vin-variables-container > div {
+  background-color: $background-color;
+  border-radius: 0.5rem;
+  padding: 0.7rem;
+}
+
+.vin-variables-name {
+  font-weight: 600;
+}
+
+.vin-variables-description {
+  font-weight: 400;
+}
+
+.vin-variable-id-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+.vin-variable-id-name {
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.vin-variable-id-description {
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
+// Responsive design for mobile devices (420px and below)
+@media (max-width: 420px) {
+  html {
+    font-size: 13px;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .vin-code-item {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    width: 100%;
+  }
+
+  .vin-code-key {
+    grid-area: auto;
+    font-size: 1rem;
+  }
+
+  .vin-code-value {
+    grid-area: auto;
+    font-size: 0.95rem;
+  }
+
+  .home-container,
+  .vin-container,
+  .vin-code-info {
+    padding: 0.7rem;
+  }
+
+  .home-element {
+    padding: 0.8rem;
+  }
 }
