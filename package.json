@@ -1,11 +1,12 @@
 {
   "name": "abp-vin-decoder",
-  "honmepage": "https://alertmode.github.io/abp-vin-decoder/",
+  "homepage": "https://alertmode.github.io/abp-vin-decoder/",
   "private": true,
   "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
