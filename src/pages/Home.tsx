@@ -22,6 +22,7 @@ const Home = () => {
           data.SearchCriteria.includes(vinCode),
         );
         if (matchingVinData) {
+          // TODO: Fix this error. Maybe, by using useMemo.
           setVinCodeData(matchingVinData);
         }
       }
@@ -33,29 +34,13 @@ const Home = () => {
     console.log(`VIN code updated in Home component: ${vin}`);
   };
 
-  // TODO: Refacotr this function to be more efficient and avoid unnecessary localStorage access
-  function extractVINInfo(vin: string) {
-    const vinDataKey = "VIN_DATA_ARCHIVE";
-    const localStorageData = getFromLocalStorage(vinDataKey);
-    if (localStorageData) {
-      const vinDataArray: VinDataAllFieldsProps[] =
-        JSON.parse(localStorageData);
-      const matchingVinData = vinDataArray.find((data) =>
-        data.SearchCriteria.includes(vin),
-      );
-      if (matchingVinData) {
-        setVinCodeData(matchingVinData);
-      }
-    }
-  }
-
   return (
     <div className="home-container">
-      <div className="home-vin-input">
+      <div className="home-element">
         <Vin onVinCodeUpdate={handleVinCodeUpdate} />
       </div>
-      <div className="home-history"></div>
-      <div className="home-result">
+      <div className="home-element"></div>
+      <div className="home-element">
         {vinCodeData ? (
           <VinCodeInfo vinCodeData={vinCodeData} />
         ) : (

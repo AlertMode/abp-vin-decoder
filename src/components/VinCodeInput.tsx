@@ -11,6 +11,7 @@ import StatusAdviser, { type StatusAdviserProps } from "./StatusAdviser";
 const VIN_DATA_KEY = "VIN_DATA_ARCHIVE";
 
 const Vin = (props: { onVinCodeUpdate: (vin: string) => void }) => {
+  const [vinInput, setVinInput] = useState("");
   const [requestStatus, setRequestStatus] = useState<StatusAdviserProps | null>(
     null,
   );
@@ -43,6 +44,7 @@ const Vin = (props: { onVinCodeUpdate: (vin: string) => void }) => {
             message: vinData.Message || "VIN data fetched successfully.",
             success: true,
           });
+          setVinInput("");
         }
         console.log(
           `Local Storage Updated: ${getFromLocalStorage(VIN_DATA_KEY)}`,
@@ -62,13 +64,16 @@ const Vin = (props: { onVinCodeUpdate: (vin: string) => void }) => {
     }
   };
 
-  const handleKeyDown = async (
-    event: React.KeyboardEvent<HTMLInputElement>,
-  ) => {
-    if (event.key === "Enter") {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    try {
       event.preventDefault();
-      const inputElement = event.currentTarget;
-      const vin = inputElement.value.trim();
+
+      const form = event.currentTarget;
+      const input = form.querySelector<HTMLInputElement>(".vin-input");
+      if (!input) return;
+
+      const vin = input.value.trim();
+
       if (isVINcode(vin)) {
         await reqestVINdata(vin);
       } else {
@@ -77,11 +82,14 @@ const Vin = (props: { onVinCodeUpdate: (vin: string) => void }) => {
           success: false,
         });
       }
+    } catch (error) {
+      console.error("ERROR >> handleSubmit:", error);
+      setRequestStatus({
+        message: "An error occurred while processing the VIN code.",
+        success: false,
+      });
     }
   };
-
-  //TODO: Write it. Simply write it.
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {};
 
   return (
     <div className="vin-container">
@@ -90,7 +98,8 @@ const Vin = (props: { onVinCodeUpdate: (vin: string) => void }) => {
           type="text"
           placeholder="Enter VIN"
           className="vin-input"
-          onKeyDown={handleKeyDown}
+          value={vinInput}
+          onChange={(e) => setVinInput(e.target.value)}
         />
         <button className="vin-submit">Submit</button>
       </form>
