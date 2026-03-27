@@ -9,7 +9,7 @@ const App = () => {
     <div className="app-container">
       <NavigationBar />
       <Routes>
-        <Route path="/abp-vin-decoder/" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/abp-vin-decoder/variables" element={<Variables />} />
         <Route path="/abp-vin-decoder/variable/:id" element={<VariableID />} />
         <Route path="*" element={<p>Path not resolved</p>} />
