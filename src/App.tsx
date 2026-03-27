@@ -9,7 +9,7 @@ const App = () => {
     <div className="app-container">
       <NavigationBar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/variables" element={<Variables />} />
         <Route path="/variable/:id" element={<VariableID />} />
       </Routes>
