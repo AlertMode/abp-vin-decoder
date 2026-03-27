@@ -6,13 +6,13 @@ const NavigationBar = () => {
     <nav className="nav-bar">
       <ul className="nav-list">
         <li>
-          <a className="nav-item" href="/">
+          <a className="nav-item" href="/abp-vin-decoder/">
             ABP-VIN-DECODER
           </a>
         </li>
         <li>
           {/* Should be moved to another place I guess. */}
-          <a className="nav-item" href="/variables">
+          <a className="nav-item" href="/abp-vin-decoder/variables">
             Variables
           </a>
         </li>
