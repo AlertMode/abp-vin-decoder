@@ -1,6 +1,6 @@
 {
   "name": "abp-vin-decoder",
-  "honmepage": "http://.github.io/abp-vin-decoder",
+  "honmepage": ".",
   "private": true,
   "version": "0.0.2",
   "type": "module",

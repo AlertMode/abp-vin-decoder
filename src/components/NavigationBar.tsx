@@ -12,7 +12,7 @@ const NavigationBar = () => {
         </li>
         <li>
           {/* Should be moved to another place I guess. */}
-          <a className="nav-item" href="/abp-vin-decoder/variables">
+          <a className="nav-item" href="#/variables">
             Variables
           </a>
         </li>

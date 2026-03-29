@@ -6,7 +6,7 @@ import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <HashRouter basename="/abp-vin-decoder">
+    <HashRouter>
       <App />
     </HashRouter>
   </StrictMode>,

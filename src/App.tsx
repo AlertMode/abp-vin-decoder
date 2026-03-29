@@ -9,9 +9,9 @@ const App = () => {
     <div className="app-container">
       <NavigationBar />
       <Routes>
-        <Route path="" element={<Home />} />
-        <Route path="variables" element={<Variables />} />
-        <Route path="variable/:id" element={<VariableID />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/variables" element={<Variables />} />
+        <Route path="/variable/:id" element={<VariableID />} />
         <Route path="*" element={<p>Path not resolved</p>} />
       </Routes>
     </div>

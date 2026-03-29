@@ -32,7 +32,7 @@ const Variables = () => {
       <div className="vin-variables-container">
         {variables.map((variable) => (
           <div key={variable.ID}>
-            <a href={`/abp-vin-decoder/variable/${variable.ID}`} className="vin-variables-name">
+            <a href={`#/variable/${variable.ID}`} className="vin-variables-name">
               {variable.Name}
             </a>
             {/* Remove HTML tags from the description before rendering */}
